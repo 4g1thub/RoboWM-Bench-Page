@@ -119,6 +119,9 @@ caption { padding: 0 0 8px; text-align: left; font-family: Georgia, serif; font-
 .supp-details summary { padding: 15px 2px; color: #edf2f3; cursor: pointer; font-size: 13px; font-weight: 750; }
 .supp-details[open] { padding-bottom: 22px; }
 .supp-details .dark-table { margin-top: 6px; }
+.pai-scatter-figure { margin: 24px 0 30px; }
+.pai-scatter-figure img { display: block; width: 100%; }
+.pai-scatter-figure figcaption { margin-top: 9px; color: #aebbc1; }
 .metric-note { margin: 0 0 12px; color: #aebbc1; font-size: 11px; }
 .subhead { margin-top: 30px; font-family: Georgia, "Times New Roman", serif; font-size: 19px; }
 .vqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 18px; }
