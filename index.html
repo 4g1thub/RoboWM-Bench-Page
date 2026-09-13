@@ -31,7 +31,7 @@
       <figure class="hero-figure">
         <img src="assets/images/teaser.webp" alt="Overview of the RoboWM-Bench evaluation pipeline, model performance, task suite, and real-to-sim validation">
       </figure>
-      <p class="caption"><strong>RoboWM-Bench at a glance.</strong> Predicted human-hand and robotic manipulation videos are converted into executable actions, validated in simulation, and assessed at step and task levels across diverse manipulation settings.</p>
+      <p class="caption"><strong>RoboWM-Bench at a glance.</strong> From generated video to executable action and simulated task success.</p>
     </section>
 
     <section id="overview" class="section-shell content-section">
@@ -41,10 +41,8 @@
       </div>
       <div class="overview-grid">
         <div class="abstract">
-          <h3>Abstract</h3>
-          <p>Recent advances in large-scale video world models have enabled increasingly realistic future prediction, raising the prospect of using generated videos as scalable supervision for robot learning. However, for embodied manipulation, perceptual realism alone is not sufficient: generated interactions must also be physically consistent and executable by robotic agents. Existing benchmarks provide valuable assessments of visual quality and physical plausibility, but they do not systematically evaluate whether predicted behaviors can be translated into executable actions that complete manipulation tasks.</p>
-          <p>We introduce <strong>RoboWM-Bench</strong>, a manipulation-centric benchmark for embodiment-grounded evaluation of video world models. RoboWM-Bench converts generated human-hand and robotic manipulation videos into embodied action sequences and validates them through execution in physically grounded simulation environments. Built on real-to-sim scene reconstruction and diverse manipulation tasks, it enables standardized, reproducible, and scalable evaluation of physical executability.</p>
-          <p>Experiments reveal that visual plausibility and embodied executability are not always aligned. Recurring factors include spatial reasoning, contact prediction, and non-physical geometric distortions, particularly in complex and long-horizon interactions.</p>
+          <h3>In brief</h3>
+          <p><strong>RoboWM-Bench</strong> evaluates whether generated human-hand and robotic manipulation videos can be converted into actions that succeed in physically grounded simulation. It complements perceptual metrics with step- and task-level execution checks across simulation-native and real-to-sim scenarios.</p>
         </div>
       </div>
     </section>
@@ -67,28 +65,28 @@
         <span>02</span>
         <h2>Execution-Grounded Evaluation</h2>
       </div>
-      <p class="lead">RoboWM-Bench turns predicted visual behavior into a measurable execution outcome. Human-centric videos are processed through 3D hand-pose estimation and retargeting; robot-centric videos are translated to joint-space actions with an inverse dynamics model.</p>
+      <p class="lead">Generated videos are converted into executable actions and validated in simulation.</p>
       <figure class="wide-figure zoomable">
         <button class="image-button" aria-label="Expand pipeline figure">
           <img src="assets/images/pipeline.webp" alt="RoboWM-Bench pipeline from video generation through action extraction and simulated execution">
         </button>
-        <figcaption><strong>Evaluation pipeline.</strong> Real scenes are reconstructed in simulation, predicted videos are converted into robot actions, and executions are checked with step-level predicates and final task success.</figcaption>
+        <figcaption><strong>Evaluation pipeline.</strong> Real-to-sim reconstruction, action extraction, and execution-based validation.</figcaption>
       </figure>
       <div class="method-grid">
         <article>
           <span class="method-tag human">Human-centric</span>
           <h3>Pose tracking and retargeting</h3>
-          <p>3D hand poses are reconstructed from generated videos. Contact-relevant hand geometry determines end-effector position, orientation, and gripper opening before smoothing and temporal denoising.</p>
+          <p>3D hand poses are retargeted to robot end-effector and gripper actions.</p>
         </article>
         <article>
           <span class="method-tag robot">Robot-centric</span>
           <h3>Inverse dynamics</h3>
-          <p>An IDM predicts intermediate joint-space action chunks from consecutive frames. Simulation pretraining supplies dense action supervision and real trajectories adapt the model to real observations.</p>
+          <p>An inverse dynamics model predicts joint-space actions from consecutive frames.</p>
         </article>
         <article>
           <span class="method-tag validation">Validation</span>
           <h3>Hierarchical execution checks</h3>
-          <p>Step-level checkers expose where a rollout fails, while task-level success measures whether the complete manipulation objective is achieved.</p>
+          <p>Step-level checks diagnose failures; task success measures completion.</p>
         </article>
       </div>
     </section>
@@ -173,13 +171,13 @@
           <button class="image-button" aria-label="Expand qualitative execution results">
             <img src="assets/images/execution-results.webp" alt="Qualitative predicted videos and corresponding simulation executions">
           </button>
-          <figcaption><strong>Qualitative execution results.</strong> Predicted videos are converted into robot actions and executed in simulation. Visually plausible interactions may still fail when contact or geometry is physically inconsistent.</figcaption>
+          <figcaption><strong>Qualitative results.</strong> Predicted videos (left) and their simulated executions (right).</figcaption>
         </figure>
 
         <div class="comparison-grid">
           <div>
             <h3>Perception is not execution</h3>
-            <p>The same generated videos receive near-saturated PAI-Bench domain scores, while execution outcomes remain strongly differentiated. Embodiment-grounded validation exposes failures that perceptual scoring can miss.</p>
+            <p>PAI-Bench scores remain near-saturated while execution outcomes vary, showing that visual plausibility does not guarantee executability.</p>
           </div>
           <figure class="zoomable">
             <button class="image-button" aria-label="Expand PAI-Bench comparison">
@@ -198,7 +196,7 @@
       <div class="reliability-intro">
         <div><strong>100%</strong><span>success consistency</span></div>
         <div><strong>100%</strong><span>failure consistency</span></div>
-        <p>Identical trajectories preserve their task outcome when replayed in reconstructed simulation environments across seven real-world manipulation tasks.</p>
+        <p>Replaying identical trajectories preserves success and failure outcomes across seven reconstructed tasks.</p>
       </div>
 
       <div class="video-grid">
@@ -226,7 +224,7 @@
             </tbody>
           </table>
         </div>
-        <p class="table-note">Human and robotic task columns represent their corresponding matched task groups. Simulation pretraining materially improves IDM replay accuracy before real-domain adaptation.</p>
+        <p class="table-note">Simulation pretraining improves IDM replay accuracy before real-domain adaptation.</p>
       </div>
     </section>
 
