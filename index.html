@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Anonymous project page for RoboWM-Bench, an execution-grounded benchmark for video world models in robotic manipulation.">
+  <title>RoboWM-Bench</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="RoboWM-Bench home">RoboWM-Bench</a>
+    <nav aria-label="Primary navigation">
+      <a href="#overview">Overview</a>
+      <a href="#method">Method</a>
+      <a href="#results">Results</a>
+      <a href="#reliability">Reliability</a>
+      <a href="#supplement">Supplement</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero section-shell">
+      <div class="eyebrow"><span class="status-dot"></span> Anonymous research project</div>
+      <h1>RoboWM-Bench</h1>
+      <p class="subtitle">A Benchmark for Evaluating World Models in Robotic Manipulation</p>
+      <div class="actions">
+        <a class="button primary" href="#presentation">Video</a>
+        <a class="button" href="#supplement">Supplementary Results</a>
+      </div>
+      <figure class="hero-figure">
+        <img src="assets/images/teaser.webp" alt="Overview of the RoboWM-Bench evaluation pipeline, model performance, task suite, and real-to-sim validation">
+      </figure>
+      <p class="caption"><strong>RoboWM-Bench at a glance.</strong> Predicted human-hand and robotic manipulation videos are converted into executable actions, validated in simulation, and assessed at step and task levels across diverse manipulation settings.</p>
+    </section>
+
+    <section id="overview" class="section-shell content-section">
+      <div class="section-heading">
+        <span>01</span>
+        <h2>Overview</h2>
+      </div>
+      <div class="overview-grid">
+        <div class="abstract">
+          <h3>Abstract</h3>
+          <p>Recent advances in large-scale video world models have enabled increasingly realistic future prediction, raising the prospect of using generated videos as scalable supervision for robot learning. However, for embodied manipulation, perceptual realism alone is not sufficient: generated interactions must also be physically consistent and executable by robotic agents. Existing benchmarks provide valuable assessments of visual quality and physical plausibility, but they do not systematically evaluate whether predicted behaviors can be translated into executable actions that complete manipulation tasks.</p>
+          <p>We introduce <strong>RoboWM-Bench</strong>, a manipulation-centric benchmark for embodiment-grounded evaluation of video world models. RoboWM-Bench converts generated human-hand and robotic manipulation videos into embodied action sequences and validates them through execution in physically grounded simulation environments. Built on real-to-sim scene reconstruction and diverse manipulation tasks, it enables standardized, reproducible, and scalable evaluation of physical executability.</p>
+          <p>Experiments reveal that visual plausibility and embodied executability are not always aligned. Recurring factors include spatial reasoning, contact prediction, and non-physical geometric distortions, particularly in complex and long-horizon interactions.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="presentation" class="media-band">
+      <div class="section-shell">
+        <div class="section-heading light">
+          <span>Video</span>
+          <h2>Project Presentation</h2>
+        </div>
+        <video class="presentation-video" controls preload="metadata" playsinline>
+          <source src="assets/videos/presentation.mp4" type="video/mp4">
+          Your browser does not support embedded video.
+        </video>
+      </div>
+    </section>
+
+    <section id="method" class="section-shell content-section">
+      <div class="section-heading">
+        <span>02</span>
+        <h2>Execution-Grounded Evaluation</h2>
+      </div>
+      <p class="lead">RoboWM-Bench turns predicted visual behavior into a measurable execution outcome. Human-centric videos are processed through 3D hand-pose estimation and retargeting; robot-centric videos are translated to joint-space actions with an inverse dynamics model.</p>
+      <figure class="wide-figure zoomable">
+        <button class="image-button" aria-label="Expand pipeline figure">
+          <img src="assets/images/pipeline.webp" alt="RoboWM-Bench pipeline from video generation through action extraction and simulated execution">
+        </button>
+        <figcaption><strong>Evaluation pipeline.</strong> Real scenes are reconstructed in simulation, predicted videos are converted into robot actions, and executions are checked with step-level predicates and final task success.</figcaption>
+      </figure>
+      <div class="method-grid">
+        <article>
+          <span class="method-tag human">Human-centric</span>
+          <h3>Pose tracking and retargeting</h3>
+          <p>3D hand poses are reconstructed from generated videos. Contact-relevant hand geometry determines end-effector position, orientation, and gripper opening before smoothing and temporal denoising.</p>
+        </article>
+        <article>
+          <span class="method-tag robot">Robot-centric</span>
+          <h3>Inverse dynamics</h3>
+          <p>An IDM predicts intermediate joint-space action chunks from consecutive frames. Simulation pretraining supplies dense action supervision and real trajectories adapt the model to real observations.</p>
+        </article>
+        <article>
+          <span class="method-tag validation">Validation</span>
+          <h3>Hierarchical execution checks</h3>
+          <p>Step-level checkers expose where a rollout fails, while task-level success measures whether the complete manipulation objective is achieved.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="results" class="results-band">
+      <div class="section-shell content-section">
+        <div class="section-heading">
+          <span>03</span>
+          <h2>Embodied Execution Results</h2>
+        </div>
+        <div class="finding-strip">
+          <div><strong>Human-hand advantage</strong><span>Generated human interactions are generally more executable than robot-arm generations.</span></div>
+          <div><strong>Complexity matters</strong><span>Long-horizon and deformable-object tasks amplify accumulated errors.</span></div>
+          <div><strong>Fine-tuning helps</strong><span>Manipulation-specific data substantially improves robot executability.</span></div>
+        </div>
+
+        <div class="table-block">
+          <div class="table-title"><h3>Human-hand task-level success</h3><span>10 trials per task</span></div>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>Method</th><th>Pick Object</th><th>Push Button</th><th>Put on Plate</th><th>Pour Water</th><th>Stack Cups</th><th>Open Drawer</th><th>Put in Drawer</th><th>Fold Towel</th></tr></thead>
+              <tbody>
+                <tr><th>Cosmos</th><td>23%</td><td>40%</td><td>15%</td><td>0%</td><td>10%</td><td>10%</td><td>10%</td><td>0%</td></tr>
+                <tr><th>Wan 2.2</th><td>57%</td><td>80%</td><td>55%</td><td>60%</td><td>40%</td><td>0%</td><td>20%</td><td>0%</td></tr>
+                <tr><th>Veo 3.1</th><td>73%</td><td class="best">100%</td><td>30%</td><td>60%</td><td>20%</td><td>20%</td><td>60%</td><td>0%</td></tr>
+                <tr><th>Wan 2.6</th><td class="best">83%</td><td class="best">100%</td><td class="best">70%</td><td class="best">80%</td><td class="best">80%</td><td class="best">80%</td><td class="best">80%</td><td class="best">40%</td></tr>
+                <tr><th>LVP</th><td>70%</td><td>40%</td><td class="best">70%</td><td>40%</td><td>20%</td><td class="best">80%</td><td>40%</td><td>20%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="table-block">
+          <div class="table-title"><h3>Robotic task-level success</h3><span>10 trials per task</span></div>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>Method</th><th>Close Drawer</th><th>Pick Object</th><th>Push Object</th><th>Push Button</th><th>Put on Plate</th><th>Discard Trash</th><th>Pull Object</th><th>Put in Drawer</th></tr></thead>
+              <tbody>
+                <tr><th>Cosmos</th><td>0%</td><td>10%</td><td>10%</td><td>10%</td><td>10%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+                <tr><th>Wan 2.2</th><td>30%</td><td>10%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+                <tr><th>Veo 3.1</th><td>20%</td><td>20%</td><td>10%</td><td>20%</td><td>10%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+                <tr><th>Wan 2.6</th><td>50%</td><td>20%</td><td>40%</td><td>40%</td><td>20%</td><td>10%</td><td>0%</td><td>0%</td></tr>
+                <tr><th>Cosmos-FT</th><td class="best">90%</td><td class="best">50%</td><td class="best">50%</td><td class="best">60%</td><td class="best">40%</td><td class="best">30%</td><td class="best">40%</td><td class="best">20%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <details class="details-panel">
+          <summary>Step-level results for representative multi-stage tasks</summary>
+          <div class="step-tables">
+            <div class="table-scroll">
+              <table>
+                <caption>Human-hand execution</caption>
+                <thead><tr><th rowspan="2">Method</th><th colspan="3">Put on Plate</th><th colspan="5">Put in Drawer</th></tr><tr><th>Contact</th><th>Lift</th><th>Place</th><th>Contact</th><th>Lift</th><th>Above</th><th>In</th><th>Close</th></tr></thead>
+                <tbody>
+                  <tr><th>Cosmos</th><td>90%</td><td>20%</td><td>15%</td><td>80%</td><td>20%</td><td>20%</td><td>20%</td><td>10%</td></tr>
+                  <tr><th>Wan 2.2</th><td>100%</td><td>60%</td><td>55%</td><td>100%</td><td>60%</td><td>60%</td><td>40%</td><td>20%</td></tr>
+                  <tr><th>Veo 3.1</th><td>100%</td><td>70%</td><td>30%</td><td>100%</td><td>70%</td><td>70%</td><td>60%</td><td>60%</td></tr>
+                  <tr><th>Wan 2.6</th><td>100%</td><td>75%</td><td>70%</td><td>100%</td><td>80%</td><td>80%</td><td>80%</td><td>80%</td></tr>
+                  <tr><th>LVP</th><td>100%</td><td>75%</td><td>70%</td><td>100%</td><td>70%</td><td>60%</td><td>50%</td><td>40%</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="table-scroll">
+              <table>
+                <caption>Robotic execution</caption>
+                <thead><tr><th rowspan="2">Method</th><th colspan="3">Put on Plate</th><th colspan="5">Put in Drawer</th></tr><tr><th>Contact</th><th>Lift</th><th>Place</th><th>Contact</th><th>Lift</th><th>Above</th><th>In</th><th>Close</th></tr></thead>
+                <tbody>
+                  <tr><th>Cosmos</th><td>30%</td><td>10%</td><td>10%</td><td>10%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+                  <tr><th>Wan 2.2</th><td>20%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+                  <tr><th>Veo 3.1</th><td>40%</td><td>10%</td><td>10%</td><td>30%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+                  <tr><th>Wan 2.6</th><td>40%</td><td>20%</td><td>20%</td><td>30%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+                  <tr><th>Cosmos-FT</th><td>60%</td><td>40%</td><td>40%</td><td>60%</td><td>20%</td><td>20%</td><td>20%</td><td>20%</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+
+        <figure class="wide-figure zoomable">
+          <button class="image-button" aria-label="Expand qualitative execution results">
+            <img src="assets/images/execution-results.webp" alt="Qualitative predicted videos and corresponding simulation executions">
+          </button>
+          <figcaption><strong>Qualitative execution results.</strong> Predicted videos are converted into robot actions and executed in simulation. Visually plausible interactions may still fail when contact or geometry is physically inconsistent.</figcaption>
+        </figure>
+
+        <div class="comparison-grid">
+          <div>
+            <h3>Perception is not execution</h3>
+            <p>The same generated videos receive near-saturated PAI-Bench domain scores, while execution outcomes remain strongly differentiated. Embodiment-grounded validation exposes failures that perceptual scoring can miss.</p>
+          </div>
+          <figure class="zoomable">
+            <button class="image-button" aria-label="Expand PAI-Bench comparison">
+              <img src="assets/images/pai-comparison.webp" alt="Comparison of PAI-Bench perceptual scores and RoboWM-Bench execution scores">
+            </button>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="reliability" class="section-shell content-section">
+      <div class="section-heading">
+        <span>04</span>
+        <h2>Reliability Analysis</h2>
+      </div>
+      <div class="reliability-intro">
+        <div><strong>100%</strong><span>success consistency</span></div>
+        <div><strong>100%</strong><span>failure consistency</span></div>
+        <p>Identical trajectories preserve their task outcome when replayed in reconstructed simulation environments across seven real-world manipulation tasks.</p>
+      </div>
+
+      <div class="video-grid">
+        <figure><video controls muted loop playsinline preload="metadata"><source src="assets/videos/success-real.mp4" type="video/mp4"></video><figcaption>Success, real-world execution</figcaption></figure>
+        <figure><video controls muted loop playsinline preload="metadata"><source src="assets/videos/success-sim.mp4" type="video/mp4"></video><figcaption>Success, reconstructed simulation</figcaption></figure>
+        <figure><video controls muted loop playsinline preload="metadata"><source src="assets/videos/failure-real.mp4" type="video/mp4"></video><figcaption>Failure, real-world execution</figcaption></figure>
+        <figure><video controls muted loop playsinline preload="metadata"><source src="assets/videos/failure-sim.mp4" type="video/mp4"></video><figcaption>Failure, reconstructed simulation</figcaption></figure>
+      </div>
+
+      <figure class="wide-figure zoomable compact">
+        <button class="image-button" aria-label="Expand real-to-sim examples">
+          <img src="assets/images/real-sim-grid.webp" alt="Real-to-sim consistency examples">
+        </button>
+      </figure>
+
+      <div class="table-block replay-table">
+        <div class="table-title"><h3>Video-to-action replay success</h3><span>Reliability of the action extraction interfaces</span></div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Interface</th><th>Pick</th><th>Stack / Pull</th><th>Pour / Push</th><th>Open / Discard</th><th>Fold / Close</th><th>Plate</th><th>Drawer</th><th>Average</th></tr></thead>
+            <tbody>
+              <tr><th>Human retargeting</th><td>100%</td><td>90%</td><td>90%</td><td>100%</td><td>100%</td><td>100%</td><td>100%</td><td class="best">97.1%</td></tr>
+              <tr><th>IDM, real only</th><td>70%</td><td>70%</td><td>80%</td><td>70%</td><td>90%</td><td>70%</td><td>50%</td><td>71.4%</td></tr>
+              <tr><th>IDM, sim + real</th><td>100%</td><td>90%</td><td>100%</td><td>90%</td><td>100%</td><td>100%</td><td>90%</td><td class="best">95.7%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">Human and robotic task columns represent their corresponding matched task groups. Simulation pretraining materially improves IDM replay accuracy before real-domain adaptation.</p>
+      </div>
+    </section>
+
+    <section id="supplement" class="supp-band">
+      <div class="section-shell content-section">
+        <div class="section-heading light">
+          <span>05</span>
+          <h2>Supplementary Results</h2>
+        </div>
+
+        <article class="supp-section">
+          <div class="supp-number">S1</div>
+          <div class="supp-content">
+            <h3>Simulation-native robotic tasks</h3>
+            <p>Additional tasks probe articulated, deformable, and long-horizon manipulation entirely in simulation. Performance drops sharply as tasks require sustained contact and multiple coordinated stages.</p>
+            <div class="table-scroll dark-table">
+              <table>
+                <thead><tr><th>Method</th><th>Close Drawer</th><th>Push Button</th><th>Cut Sausage</th><th>Turn Off Faucet</th><th>Assemble Burger</th><th>Fold Clothes</th></tr></thead>
+                <tbody>
+                  <tr><th>Cosmos</th><td>0%</td><td>10%</td><td>10%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+                  <tr><th>Wan 2.2</th><td>10%</td><td>10%</td><td>10%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+                  <tr><th>Wan 2.6</th><td class="best">30%</td><td class="best">20%</td><td class="best">40%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+                  <tr><th>Veo 3.1</th><td>10%</td><td class="best">20%</td><td>20%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="task-thumbs">
+              <figure><img src="assets/images/sim-tasks/faucet.png" alt="Turn off faucet task"><figcaption>Turn off faucet</figcaption></figure>
+              <figure><img src="assets/images/sim-tasks/burger.png" alt="Assemble burger task"><figcaption>Assemble burger</figcaption></figure>
+              <figure><img src="assets/images/sim-tasks/cloth.png" alt="Fold clothes task"><figcaption>Fold clothes</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+        <article class="supp-section">
+          <div class="supp-number">S2</div>
+          <div class="supp-content">
+            <h3>Bimanual human-hand tasks</h3>
+            <p>Cook and Lift Large Box test coordinated two-hand manipulation. Wan 2.6 achieves the strongest task-level success, reaching 50% and 60%, respectively.</p>
+            <div class="two-col-tables">
+              <div class="table-scroll dark-table">
+                <table><caption>Cook</caption><thead><tr><th>Method</th><th>Task</th><th>Grasp spatula</th><th>Grasp pan</th><th>Contact</th></tr></thead><tbody>
+                  <tr><th>Cosmos</th><td>10%</td><td>30%</td><td>20%</td><td>20%</td></tr><tr><th>Wan 2.2</th><td>30%</td><td>70%</td><td>60%</td><td>30%</td></tr><tr><th>Wan 2.6</th><td class="best">50%</td><td class="best">90%</td><td class="best">70%</td><td class="best">60%</td></tr><tr><th>Veo 3.1</th><td>40%</td><td>80%</td><td class="best">70%</td><td class="best">60%</td></tr><tr><th>LVP</th><td>30%</td><td>80%</td><td class="best">70%</td><td>40%</td></tr>
+                </tbody></table>
+              </div>
+              <div class="table-scroll dark-table">
+                <table><caption>Lift Large Box</caption><thead><tr><th>Method</th><th>Task</th><th>Grasp left</th><th>Grasp right</th><th>Lift</th><th>Place</th></tr></thead><tbody>
+                  <tr><th>Cosmos</th><td>10%</td><td>20%</td><td>20%</td><td>10%</td><td>10%</td></tr><tr><th>Wan 2.2</th><td>30%</td><td>70%</td><td>60%</td><td>30%</td><td>30%</td></tr><tr><th>Wan 2.6</th><td class="best">60%</td><td class="best">90%</td><td class="best">90%</td><td class="best">70%</td><td class="best">60%</td></tr><tr><th>Veo 3.1</th><td>50%</td><td>80%</td><td>80%</td><td>50%</td><td>50%</td></tr><tr><th>LVP</th><td>30%</td><td>70%</td><td>70%</td><td>30%</td><td>30%</td></tr>
+                </tbody></table>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="supp-section">
+          <div class="supp-number">S3</div>
+          <div class="supp-content split-evidence">
+            <div>
+              <h3>Additional qualitative evidence</h3>
+              <p>More predicted videos and their corresponding embodied executions expose errors in grasp formation, object localization, contact persistence, and robot geometry.</p>
+            </div>
+            <figure class="zoomable tall-figure"><button class="image-button" aria-label="Expand additional qualitative results"><img src="assets/images/more-results.webp" alt="Additional predicted video and embodied execution examples"></button></figure>
+          </div>
+        </article>
+
+        <article class="supp-section">
+          <div class="supp-number">S4</div>
+          <div class="supp-content">
+            <h3>Depth in human-hand tracking</h3>
+            <p>Direct monocular absolute depth differs substantially from ground truth. Aligning relative depth to the first-frame ground-truth depth improves temporal consistency but remains imperfect, motivating the geometry-based retargeting design used in the benchmark.</p>
+            <figure class="zoomable"><button class="image-button" aria-label="Expand depth analysis"><img src="assets/images/depth-analysis.webp" alt="Comparison of ground-truth, absolute predicted, and aligned relative depth"></button></figure>
+          </div>
+        </article>
+
+        <article class="supp-section">
+          <div class="supp-number">S5</div>
+          <div class="supp-content">
+            <h3>Generation and evaluation protocol</h3>
+            <div class="protocol-grid">
+              <div><h4>Prompt generation</h4><p>Qwen3-VL-Flash produces concise task-specific descriptions from the initial observation and high-level task instruction. Human prompts additionally require a fully visible hand, a static camera, no unnecessary gestures, and stationary non-target objects.</p></div>
+              <div><h4>PAI-Bench VQA</h4><p>Separate human and robot question sets evaluate task completion, contact, structural integrity, object deformation, and implausible motion. The task-specific question changes by scenario; the four physical-consistency questions remain fixed.</p></div>
+              <div><h4>Standardization</h4><p>Every model receives the same initial configurations, task descriptions, random seeds, and evaluation protocol. Each main task is evaluated over ten object configurations.</p></div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="section-shell"><strong>RoboWM-Bench</strong><span>Anonymous project page for peer review.</span></div>
+  </footer>
+
+  <dialog id="image-dialog" aria-label="Expanded figure">
+    <button class="dialog-close" aria-label="Close expanded figure">Close</button>
+    <img alt="">
+  </dialog>
+  <script src="script.js"></script>
+</body>
+</html>
