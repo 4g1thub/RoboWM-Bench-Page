@@ -114,6 +114,22 @@ caption { padding: 0 0 8px; text-align: left; font-family: Georgia, serif; font-
 .dark-table th, .dark-table td { border-color: rgba(255,255,255,.13); }
 .dark-table thead th, .dark-table tbody th { color: #edf2f3; background: var(--dark); }
 .dark-table .best { color: #b9daf8; background: rgba(88,153,214,.13); }
+.supp-details { margin-top: 20px; border-block: 1px solid rgba(255,255,255,.18); }
+.supp-details + .supp-details { margin-top: -1px; }
+.supp-details summary { padding: 15px 2px; color: #edf2f3; cursor: pointer; font-size: 13px; font-weight: 750; }
+.supp-details[open] { padding-bottom: 22px; }
+.supp-details .dark-table { margin-top: 6px; }
+.metric-note { margin: 0 0 12px; color: #aebbc1; font-size: 11px; }
+.subhead { margin-top: 30px; font-family: Georgia, "Times New Roman", serif; font-size: 19px; }
+.vqa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 18px; }
+.vqa-grid > div { padding: 20px; border: 1px solid rgba(255,255,255,.16); }
+.vqa-grid ol { margin: 10px 0 0; padding-left: 20px; color: #bdc9ce; font-size: 12px; }
+.vqa-grid li + li { margin-top: 9px; }
+.prompt-table { white-space: normal; }
+.prompt-table th:first-child { min-width: 120px; }
+.prompt-table td:nth-child(2) { width: 210px; min-width: 210px; }
+.prompt-table td:last-child { min-width: 420px; text-align: left; line-height: 1.55; }
+.prompt-table img { display: block; width: 190px; aspect-ratio: 16 / 9; object-fit: cover; }
 .task-thumbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 24px; }
 .task-thumbs figure { margin: 0; }
 .task-thumbs img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
@@ -140,7 +156,7 @@ dialog img { max-height: calc(94vh - 60px); margin: 0 auto; object-fit: contain;
 @media (max-width: 900px) {
   nav { gap: 14px; } nav a:nth-child(2), nav a:nth-child(4) { display: none; }
   .overview-grid, .comparison-grid, .split-evidence { grid-template-columns: 1fr; }
-  .method-grid, .finding-strip, .protocol-grid { grid-template-columns: 1fr; }
+  .method-grid, .finding-strip, .protocol-grid, .vqa-grid { grid-template-columns: 1fr; }
   .method-grid article, .finding-strip div, .protocol-grid div { border-right: 0; border-bottom: 1px solid var(--line); }
   .video-grid { grid-template-columns: 1fr 1fr; }
   .two-col-tables { grid-template-columns: 1fr; }

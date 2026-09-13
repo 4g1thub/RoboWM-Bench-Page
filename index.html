@@ -253,6 +253,23 @@
                 </tbody>
               </table>
             </div>
+            <details class="supp-details">
+              <summary>Step-level results for long-horizon simulation-native tasks</summary>
+              <div class="table-scroll dark-table">
+                <table>
+                  <thead>
+                    <tr><th rowspan="2">Method</th><th colspan="3">Turn Off Faucet</th><th colspan="3">Assemble Burger</th><th colspan="2">Fold Clothes</th></tr>
+                    <tr><th>Contact</th><th>Rotation &gt; 20&deg;</th><th>Turn off</th><th>Contact</th><th>Lift</th><th>Place</th><th>Left sleeve</th><th>Right sleeve</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><th>Cosmos</th><td>10%</td><td>0%</td><td>0%</td><td>10%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+                    <tr><th>Wan 2.2</th><td>10%</td><td>0%</td><td>0%</td><td>10%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+                    <tr><th>Wan 2.6</th><td class="best">40%</td><td class="best">10%</td><td>0%</td><td class="best">30%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+                    <tr><th>Veo 3.1</th><td>20%</td><td>0%</td><td>0%</td><td>10%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </details>
             <div class="task-thumbs">
               <figure><img src="assets/images/sim-tasks/faucet.png" alt="Turn off faucet task"><figcaption>Turn off faucet</figcaption></figure>
               <figure><img src="assets/images/sim-tasks/burger.png" alt="Assemble burger task"><figcaption>Assemble burger</figcaption></figure>
@@ -283,6 +300,106 @@
 
         <article class="supp-section">
           <div class="supp-number">S3</div>
+          <div class="supp-content">
+            <h3>Complete PAI-Bench analysis</h3>
+            <p>PAI-Bench quality scores remain concentrated around 0.78 across tasks and models, while RoboWM-Bench execution accuracy varies substantially. The tables below report every domain and quality score used in this comparison on the same generated videos evaluated by RoboWM-Bench.</p>
+
+            <details class="supp-details">
+              <summary>Human-hand PAI-Bench domain scores</summary>
+              <div class="table-scroll dark-table">
+                <table>
+                  <thead><tr><th>Model</th><th>Pick Object</th><th>Push Button</th><th>Put on Plate</th><th>Pour Water</th><th>Stack Cups</th><th>Open Drawer</th><th>Put in Drawer</th><th>Fold Towel</th><th>Avg.</th></tr></thead>
+                  <tbody>
+                    <tr><th>Cosmos</th><td>96</td><td class="best">100</td><td>92</td><td>72</td><td>78</td><td class="best">100</td><td class="best">100</td><td>86</td><td>90.5</td></tr>
+                    <tr><th>Wan 2.2</th><td>92</td><td class="best">100</td><td class="best">100</td><td>94</td><td class="best">100</td><td class="best">100</td><td class="best">100</td><td class="best">100</td><td class="best">98.3</td></tr>
+                    <tr><th>Wan 2.6</th><td class="best">100</td><td>92</td><td class="best">100</td><td class="best">100</td><td class="best">100</td><td class="best">100</td><td class="best">100</td><td>86</td><td>97.3</td></tr>
+                    <tr><th>Veo 3.1</th><td class="best">100</td><td>82</td><td class="best">100</td><td class="best">100</td><td class="best">100</td><td>92</td><td>92</td><td class="best">100</td><td>95.8</td></tr>
+                    <tr><th>LVP</th><td class="best">100</td><td>78</td><td class="best">100</td><td>78</td><td class="best">100</td><td class="best">100</td><td>86</td><td>76</td><td>87.0</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </details>
+
+            <details class="supp-details">
+              <summary>Robotic real-task PAI-Bench domain scores</summary>
+              <div class="table-scroll dark-table">
+                <table>
+                  <thead><tr><th>Model</th><th>Close Drawer</th><th>Pick Object</th><th>Push Object</th><th>Push Button</th><th>Put on Plate</th><th>Discard Trash</th><th>Pull Object</th><th>Put in Drawer</th><th>Avg.</th></tr></thead>
+                  <tbody>
+                    <tr><th>Cosmos</th><td>84</td><td class="best">100</td><td class="best">100</td><td class="best">100</td><td class="best">100</td><td class="best">100</td><td class="best">100</td><td class="best">100</td><td>98.0</td></tr>
+                    <tr><th>Wan 2.2</th><td class="best">100</td><td class="best">100</td><td>92</td><td class="best">100</td><td>94</td><td class="best">100</td><td>98</td><td>86</td><td>96.3</td></tr>
+                    <tr><th>Wan 2.6</th><td class="best">100</td><td class="best">100</td><td class="best">100</td><td class="best">100</td><td class="best">100</td><td class="best">100</td><td class="best">100</td><td class="best">100</td><td class="best">99.5</td></tr>
+                    <tr><th>Veo 3.1</th><td class="best">100</td><td class="best">100</td><td class="best">100</td><td>90</td><td class="best">100</td><td class="best">100</td><td class="best">100</td><td>80</td><td>96.3</td></tr>
+                    <tr><th>Cosmos-FT</th><td class="best">100</td><td class="best">100</td><td class="best">100</td><td class="best">100</td><td class="best">100</td><td>92</td><td class="best">100</td><td class="best">100</td><td>99.0</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </details>
+
+            <details class="supp-details">
+              <summary>Human-hand PAI-Bench quality scores</summary>
+              <p class="metric-note">SC: subject consistency; BC: background consistency; MS: motion smoothness; AQ: aesthetic quality; IQ: imaging quality; OC: overall consistency; IS: I2V subject; IB: I2V background.</p>
+              <div class="table-scroll dark-table">
+                <table>
+                  <thead><tr><th>Model</th><th>SC</th><th>BC</th><th>MS</th><th>AQ</th><th>IQ</th><th>OC</th><th>IS</th><th>IB</th><th>Avg.</th></tr></thead>
+                  <tbody>
+                    <tr><th>Cosmos</th><td>95.0</td><td>94.9</td><td>99.5</td><td class="best">45.8</td><td>74.9</td><td>25.6</td><td>98.3</td><td>98.5</td><td class="best">79.1</td></tr>
+                    <tr><th>Wan 2.2</th><td>95.5</td><td>94.9</td><td>99.1</td><td>41.7</td><td>74.5</td><td>26.2</td><td class="best">98.6</td><td>98.5</td><td>78.6</td></tr>
+                    <tr><th>Wan 2.6</th><td class="best">96.9</td><td>95.6</td><td>99.2</td><td>40.5</td><td class="best">75.9</td><td>25.8</td><td>98.4</td><td>97.9</td><td>78.8</td></tr>
+                    <tr><th>Veo 3.1</th><td>96.0</td><td>95.5</td><td class="best">99.6</td><td>40.9</td><td>75.4</td><td class="best">26.3</td><td>98.5</td><td class="best">98.6</td><td>78.9</td></tr>
+                    <tr><th>LVP</th><td>96.3</td><td class="best">95.9</td><td>99.4</td><td>36.4</td><td>74.4</td><td>25.6</td><td>98.1</td><td>98.0</td><td>78.0</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </details>
+
+            <details class="supp-details">
+              <summary>Robotic real-task PAI-Bench quality scores</summary>
+              <p class="metric-note">Scores use the same eight PAI-Bench quality metrics defined above.</p>
+              <div class="table-scroll dark-table">
+                <table>
+                  <thead><tr><th>Model</th><th>SC</th><th>BC</th><th>MS</th><th>AQ</th><th>IQ</th><th>OC</th><th>IS</th><th>IB</th><th>Avg.</th></tr></thead>
+                  <tbody>
+                    <tr><th>Cosmos</th><td>94.9</td><td>92.9</td><td>99.4</td><td>44.3</td><td>74.5</td><td>22.2</td><td>94.0</td><td>93.5</td><td>77.0</td></tr>
+                    <tr><th>Wan 2.2</th><td>96.5</td><td>94.6</td><td>99.5</td><td>43.9</td><td>73.5</td><td>23.2</td><td>94.6</td><td>93.2</td><td>77.4</td></tr>
+                    <tr><th>Wan 2.6</th><td class="best">96.9</td><td class="best">96.2</td><td>99.4</td><td class="best">45.1</td><td class="best">77.1</td><td>23.3</td><td>94.3</td><td>92.8</td><td class="best">78.1</td></tr>
+                    <tr><th>Veo 3.1</th><td>95.1</td><td>92.5</td><td class="best">99.6</td><td>44.4</td><td>70.1</td><td class="best">23.6</td><td>95.0</td><td>94.8</td><td>76.9</td></tr>
+                    <tr><th>Cosmos-FT</th><td>94.6</td><td>94.2</td><td>99.5</td><td>44.3</td><td>64.9</td><td>22.8</td><td class="best">98.2</td><td class="best">98.5</td><td>77.1</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </details>
+
+            <h4 class="subhead">PAI-Bench domain-score implementation</h4>
+            <p>Human-hand and robotic videos use separate five-question VQA suites. Question 1 is task-dependent; Questions 2-5 are fixed across all tasks. The expected answer is <strong>A (yes)</strong> for every question.</p>
+            <div class="vqa-grid">
+              <div>
+                <h4>Human-hand VQA</h4>
+                <ol>
+                  <li>Does the human successfully complete the specified task?</li>
+                  <li>Does the human hand make physical contact with the target object?</li>
+                  <li>Does the hand maintain anatomically plausible structure throughout the video, without impossible bends, broken fingers, or extra joints?</li>
+                  <li>Do all task-relevant objects maintain structural integrity without physically implausible deformation?</li>
+                  <li>Do all task-relevant objects exhibit physically plausible motion without sudden spatial displacement?</li>
+                </ol>
+              </div>
+              <div>
+                <h4>Robotic VQA</h4>
+                <ol>
+                  <li>Does the robot successfully complete the specified task?</li>
+                  <li>Does the robot gripper make physical contact with the target object?</li>
+                  <li>Does the arm and gripper maintain structural integrity and physically plausible joint configurations, without rigid-link or gripper deformation?</li>
+                  <li>Do all task-relevant objects maintain structural integrity without physically implausible deformation?</li>
+                  <li>Do all task-relevant objects exhibit physically plausible motion without sudden spatial displacement?</li>
+                </ol>
+              </div>
+            </div>
+            <p class="metric-note">Answer options for every VQA item: (A) yes, (B) no, (C) unclear. Ground truth: A.</p>
+          </div>
+        </article>
+
+        <article class="supp-section">
+          <div class="supp-number">S4</div>
           <div class="supp-content split-evidence">
             <div>
               <h3>Additional qualitative evidence</h3>
@@ -293,7 +410,7 @@
         </article>
 
         <article class="supp-section">
-          <div class="supp-number">S4</div>
+          <div class="supp-number">S5</div>
           <div class="supp-content">
             <h3>Depth in human-hand tracking</h3>
             <p>Direct monocular absolute depth differs substantially from ground truth. Aligning relative depth to the first-frame ground-truth depth improves temporal consistency but remains imperfect, motivating the geometry-based retargeting design used in the benchmark.</p>
@@ -302,7 +419,7 @@
         </article>
 
         <article class="supp-section">
-          <div class="supp-number">S5</div>
+          <div class="supp-number">S6</div>
           <div class="supp-content">
             <h3>Generation and evaluation protocol</h3>
             <div class="protocol-grid">
@@ -310,6 +427,65 @@
               <div><h4>PAI-Bench VQA</h4><p>Separate human and robot question sets evaluate task completion, contact, structural integrity, object deformation, and implausible motion. The task-specific question changes by scenario; the four physical-consistency questions remain fixed.</p></div>
               <div><h4>Standardization</h4><p>Every model receives the same initial configurations, task descriptions, random seeds, and evaluation protocol. Each main task is evaluated over ten object configurations.</p></div>
             </div>
+
+            <details class="supp-details prompt-details">
+              <summary>Complete human-hand generation prompts</summary>
+              <p class="metric-note">Each prompt is followed by the standardized constraints requiring the entire hand to remain visible, a static camera, no unnecessary gestures, and stationary non-target objects.</p>
+              <div class="table-scroll dark-table">
+                <table class="prompt-table">
+                  <thead><tr><th>Task</th><th>Input</th><th>Task prompt</th></tr></thead>
+                  <tbody>
+                    <tr><th>Pick Object</th><td><img src="assets/images/human-tasks/pick_stapler.jpg" alt="Pick Object input"></td><td>The hand lowers slowly toward the stapler and gently grasps it using the thumb and index finger. The stapler is lifted slowly from the table surface without any bouncing or sliding.</td></tr>
+                    <tr><th>Push Button</th><td><img src="assets/images/human-tasks/push_button.jpg" alt="Push Button input"></td><td>The hand moves downward toward the button. The fingers make contact with the yellow surface. The hand applies pressure, causing the button to compress. The hand lifts up and rests in the air.</td></tr>
+                    <tr><th>Put on Plate</th><td><img src="assets/images/human-tasks/pick_place_banana_plate.jpg" alt="Put on Plate input"></td><td>The hand slowly extends downward to gently grasp the banana using the thumb and index finger, then slowly lifts the banana straight up. The banana is then slowly placed in the center of the plate.</td></tr>
+                    <tr><th>Pour Water</th><td><img src="assets/images/human-tasks/pour_water.jpg" alt="Pour Water input"></td><td>The hand grasps the plastic cup using the thumb and index finger. It slowly lifts the cup from the table, tilts the cup to pour water into the paper cup, and releases the plastic cup.</td></tr>
+                    <tr><th>Stack Cups</th><td><img src="assets/images/human-tasks/stack_cup.jpg" alt="Stack Cups input"></td><td>The hand grasps the left edge of the left cup using the thumb and index fingers and slowly lifts it, then moves it above the right cup and lowers it to stack inside.</td></tr>
+                    <tr><th>Open Drawer</th><td><img src="assets/images/human-tasks/open_drawer.jpg" alt="Open Drawer input"></td><td>The hand grasps the left edge of the transparent drawer using the thumb and index fingers, then pulls it leftward, causing the drawer to slide open.</td></tr>
+                    <tr><th>Put in Drawer</th><td><img src="assets/images/human-tasks/pick_in_drawer_banana.jpg" alt="Put in Drawer input"></td><td>The hand slowly moves to grasp the banana using the thumb and index finger, lifts it, and places it inside the clear drawer. The hand pushes the drawer into the container until it is fully closed.</td></tr>
+                    <tr><th>Fold Towel</th><td><img src="assets/images/human-tasks/fold_towl.jpg" alt="Fold Towel input"></td><td>The hand grasps the left edge using the thumb and index fingers and lifts it. The hand folds the towel over to the right edge, aligns the edges, and presses down to secure the fold.</td></tr>
+                    <tr><th>Cook</th><td><img src="assets/images/human-tasks/cook.jpg" alt="Cook input"></td><td>The person uses their left hand to pick up the wooden spatula and places it into the frying pan, while their right hand holds the pan handle and lifts it. They briefly stir or scrape, then return the spatula and pan to their original positions.</td></tr>
+                    <tr><th>Lift Large Box</th><td><img src="assets/images/human-tasks/lift_large_box.jpg" alt="Lift Large Box input"></td><td>The person grasps both the left and right edges of the box using the thumb and index fingers, lifting it vertically off the table.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </details>
+
+            <details class="supp-details prompt-details">
+              <summary>Complete real-to-sim robotic generation prompts</summary>
+              <p class="metric-note">Each prompt is followed by constraints requiring rigid gripper geometry, mechanically valid joint rotations, and an unchanged camera viewpoint.</p>
+              <div class="table-scroll dark-table">
+                <table class="prompt-table">
+                  <thead><tr><th>Task</th><th>Input</th><th>Task prompt</th></tr></thead>
+                  <tbody>
+                    <tr><th>Close Drawer</th><td><img src="assets/images/robot-tasks/closedrawer.jpg" alt="Close Drawer robot input"></td><td>The robotic arm closes its gripper and pushes the drawer back to its closed position.</td></tr>
+                    <tr><th>Pick Object</th><td><img src="assets/images/robot-tasks/pick.jpg" alt="Pick Object robot input"></td><td>The robotic arm picks up the white cup from the table surface.</td></tr>
+                    <tr><th>Push Object</th><td><img src="assets/images/robot-tasks/push.jpg" alt="Push Object robot input"></td><td>The robotic arm closes its gripper and pushes the green cube away from the base of the arm for a short distance.</td></tr>
+                    <tr><th>Push Button</th><td><img src="assets/images/robot-tasks/push_button.jpg" alt="Push Button robot input"></td><td>The robotic arm closes its gripper, then uses the gripper to press the yellow button on the tabletop.</td></tr>
+                    <tr><th>Put on Plate</th><td><img src="assets/images/robot-tasks/tableware.jpg" alt="Put on Plate robot input"></td><td>The robotic arm picks up the white cup from the table and moves its gripper above the plate, then releases the cup, placing it on the plate.</td></tr>
+                    <tr><th>Discard Trash</th><td><img src="assets/images/robot-tasks/picktrash.jpg" alt="Discard Trash robot input"></td><td>The robotic arm picks up the green cube, moves its gripper above the trash bin, then releases the gripper to drop the cube into the bin.</td></tr>
+                    <tr><th>Pull Object</th><td><img src="assets/images/robot-tasks/pull.jpg" alt="Pull Object robot input"></td><td>The robotic arm closes its gripper and pulls the green cube toward the robotic arm base for a short distance.</td></tr>
+                    <tr><th>Put in Drawer</th><td><img src="assets/images/robot-tasks/hard.jpg" alt="Put in Drawer robot input"></td><td>The robotic arm picks up the yellow banana, moves it above the open drawer, releases it into the drawer, then pushes the drawer back to its closed position.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </details>
+
+            <details class="supp-details prompt-details">
+              <summary>Complete simulation-native robotic generation prompts</summary>
+              <div class="table-scroll dark-table">
+                <table class="prompt-table">
+                  <thead><tr><th>Task</th><th>Input</th><th>Task prompt</th></tr></thead>
+                  <tbody>
+                    <tr><th>Close Drawer</th><td><img src="assets/images/sim-tasks/drawer.png" alt="Close Drawer simulation input"></td><td>The robotic arm closes its gripper and pushes the drawer back to its closed position.</td></tr>
+                    <tr><th>Push Button</th><td><img src="assets/images/sim-tasks/button.png" alt="Push Button simulation input"></td><td>The robotic arm closes its gripper, then uses the gripper to press the yellow button on the tabletop.</td></tr>
+                    <tr><th>Cut Sausage</th><td><img src="assets/images/sim-tasks/sausage.png" alt="Cut Sausage simulation input"></td><td>The robotic arm uses a knife to cut the sausage on the table.</td></tr>
+                    <tr><th>Turn Off Faucet</th><td><img src="assets/images/sim-tasks/faucet.png" alt="Turn Off Faucet simulation input"></td><td>The robotic arm grasps the lever handle on the left side of the faucet, then rotates it inward to turn off the water.</td></tr>
+                    <tr><th>Assemble Burger</th><td><img src="assets/images/sim-tasks/burger.png" alt="Assemble Burger simulation input"></td><td>The robotic arm pushes the meat patty to the cutting-board edge, picks it up, and places it on top of the cheese on the plate.</td></tr>
+                    <tr><th>Fold Clothes</th><td><img src="assets/images/sim-tasks/cloth.png" alt="Fold Clothes simulation input"></td><td>The left and right arms grasp the sleeve cuffs, lift them, and fold both sleeves inward toward the center of the shirt, aligning them along the torso.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </details>
           </div>
         </article>
 
